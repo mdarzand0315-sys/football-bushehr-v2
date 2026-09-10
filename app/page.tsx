@@ -1,26 +1,26 @@
 
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import News from "../components/News";
-import Announcements from "../components/Announcements";
-import MatchCard from "../components/MatchCard";
-import MediaCard from "../components/MediaCard";
+import NewsSection from "../components/NewsSection";
+import MatchSection from "../components/MatchSection";
+import LeagueTable from "../components/LeagueTable";
+import GallerySection from "../components/GallerySection";
+import VideoSection from "../components/VideoSection";
+import Footer from "../components/Footer";
 
 export default function Home(){
-return <>
-<Header/>
-<Hero/>
-
-<main className="max-w-6xl mx-auto p-6 space-y-6">
-
-<News/>
-
-<Announcements/>
-
-<MatchCard/>
-
-<MediaCard/>
-
-</main>
-</>
+  return (
+    <>
+      <Header/>
+      <Hero/>
+      <main className="container">
+        <NewsSection/>
+        <MatchSection/>
+        <LeagueTable/>
+        <GallerySection/>
+        <VideoSection/>
+      </main>
+      <Footer/>
+    </>
+  );
 }

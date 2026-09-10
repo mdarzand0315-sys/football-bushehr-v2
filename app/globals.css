@@ -5,6 +5,13 @@
 
 body{
 direction:rtl;
-font-family:tahoma,Arial,sans-serif;
-background:#f5f8fa;
+font-family:Tahoma,Arial,sans-serif;
+background:#f5f8fb;
+color:#102a43;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:24px;
 }
