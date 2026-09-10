@@ -1,11 +1,13 @@
 
 export default function Header(){
-return <header className="bg-[#003b56] text-white p-5">
-<div className="max-w-6xl mx-auto flex justify-between items-center">
-<h1 className="font-black text-2xl">⚽ فوتبال بوشهر</h1>
-<nav className="space-x-4">
-خانه | اخبار | مسابقات | جدول | تصاویر | ویدیو
+return (
+<header className="bg-[#003b56] text-white p-5 shadow">
+<div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div className="text-2xl font-black">⚽ هیأت فوتبال استان بوشهر</div>
+<nav className="text-sm md:text-base space-x-4">
+خانه | اخبار | اطلاعیه‌ها | مسابقات | جدول | تصاویر | ویدیو
 </nav>
 </div>
 </header>
+)
 }
