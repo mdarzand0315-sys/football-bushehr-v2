@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body{
- direction:rtl;
- font-family:Tahoma,Arial,sans-serif;
- background:#f4f7f9;
+direction:rtl;
+font-family:tahoma,Arial,sans-serif;
+background:#f5f8fa;
 }
