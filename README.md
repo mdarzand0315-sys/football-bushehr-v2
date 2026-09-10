@@ -1,6 +1,11 @@
 
-Football Bushehr Vercel Ready
+Stage 6-B Database Setup
 
-Deploy:
-npm install
-npm run build
+Install:
+npm install prisma @prisma/client
+
+Generate:
+npx prisma generate
+
+Migration:
+npx prisma migrate dev
