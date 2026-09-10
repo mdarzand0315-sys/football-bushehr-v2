@@ -1,11 +1,17 @@
 
-Stage 6-B Database Setup
+Football Bushehr UI 3.0
 
-Install:
-npm install prisma @prisma/client
+نسخه طراحی مدرن فوتبال بوشهر
+این بسته شامل ساختار اولیه UI نهایی است.
 
-Generate:
-npx prisma generate
+بخش‌ها:
+- Header
+- Hero
+- Stats
+- News
+- Matches
+- Standings
+- Media
+- Footer
 
-Migration:
-npx prisma migrate dev
+برای اتصال به پروژه Next.js فعلی استفاده شود.
