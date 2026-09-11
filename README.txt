@@ -1,5 +1,5 @@
 
-Stage 5.1 Database
-Stage 5.2 Admin Panel
-Stage 5.3 Authentication preparation
-Stage 5.4 Frontend API connection foundation
+Stage 5.5 News Management
+Stage 5.6 Match Management
+Stage 5.7 League Table Engine Foundation
+Stage 5.8 Authentication Foundation
