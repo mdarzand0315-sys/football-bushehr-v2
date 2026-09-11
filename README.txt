@@ -1,5 +1,5 @@
 
-Stage 5.5 News Management
-Stage 5.6 Match Management
-Stage 5.7 League Table Engine Foundation
-Stage 5.8 Authentication Foundation
+Stage 6.1 Production Database
+Stage 6.2 File Upload Foundation
+Stage 6.3 Admin Management Forms
+Stage 6.4 Frontend API Connection
