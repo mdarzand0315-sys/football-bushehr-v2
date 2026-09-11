@@ -1,8 +1,8 @@
 interface VideoCardProps {
-  title: string;
+  title?: string;
 }
 
-export default function VideoCard({ title }: VideoCardProps) {
+export default function VideoCard({ title = "ویدیو" }: VideoCardProps) {
   return (
     <div className="rounded-3xl bg-white shadow p-5">
       <div className="h-40 bg-gray-200 rounded-2xl mb-4 flex items-center justify-center">
