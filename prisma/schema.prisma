@@ -1,75 +1,38 @@
 
 generator client {
-  provider = "prisma-client-js"
+ provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-model User {
-  id        Int @id @default(autoincrement())
-  name      String
-  email     String @unique
-  password  String
-  role      String @default("ADMIN")
-  createdAt DateTime @default(now())
+ provider = "postgresql"
+ url = env("DATABASE_URL")
 }
 
 model News {
-  id        Int @id @default(autoincrement())
-  title     String
-  slug      String @unique
-  content   String
-  image     String?
-  category  String?
-  createdAt DateTime @default(now())
-}
-
-model Announcement {
-  id        Int @id @default(autoincrement())
-  title     String
-  content   String
-  important Boolean @default(false)
-  createdAt DateTime @default(now())
-}
-
-model League {
-  id        Int @id @default(autoincrement())
-  name      String
-  active    Boolean @default(true)
-  matches   Match[]
+ id String @id @default(cuid())
+ title String
+ slug String @unique
+ image String?
+ content String
+ category String
+ createdAt DateTime @default(now())
 }
 
 model Team {
-  id            Int @id @default(autoincrement())
-  name          String
-  logo          String?
-  standings     Standing[]
+ id String @id @default(cuid())
+ name String
+ logo String?
+ city String?
+ league String?
 }
 
 model Match {
-  id          Int @id @default(autoincrement())
-  week        Int
-  homeTeam    String
-  awayTeam    String
-  homeScore   Int?
-  awayScore   Int?
-  date        DateTime
-  leagueId    Int
-  league      League @relation(fields:[leagueId], references:[id])
-}
-
-model Standing {
-  id             Int @id @default(autoincrement())
-  teamId         Int
-  played         Int @default(0)
-  wins           Int @default(0)
-  draws          Int @default(0)
-  losses         Int @default(0)
-  goalsFor       Int @default(0)
-  goalsAgainst   Int @default(0)
-  points         Int @default(0)
-  team           Team @relation(fields:[teamId], references:[id])
+ id String @id @default(cuid())
+ homeTeam String
+ awayTeam String
+ date DateTime
+ stadium String?
+ homeScore Int?
+ awayScore Int?
+ status String
 }
