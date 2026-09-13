@@ -1,3 +1,5 @@
 [build]
 command = "npx next build"
-publish = "out"
+
+# Next.js app is handled by Netlify Next plugin
+publish = ".next"
