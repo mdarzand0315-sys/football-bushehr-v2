@@ -17,6 +17,37 @@ export type Standing = {
   points: number;
 };
 
+function getHeadToHeadScore(teamA: string, teamB: string, matches: MatchResult[]) {
+  let scoreA = 0;
+  let scoreB = 0;
+
+  matches
+    .filter(
+      (m) =>
+        (m.homeTeam === teamA && m.awayTeam === teamB) ||
+        (m.homeTeam === teamB && m.awayTeam === teamA)
+    )
+    .forEach((m) => {
+      if (m.homeTeam === teamA) {
+        if (m.homeScore > m.awayScore) scoreA += 3;
+        else if (m.homeScore < m.awayScore) scoreB += 3;
+        else {
+          scoreA += 1;
+          scoreB += 1;
+        }
+      } else {
+        if (m.awayScore > m.homeScore) scoreA += 3;
+        else if (m.awayScore < m.homeScore) scoreB += 3;
+        else {
+          scoreA += 1;
+          scoreB += 1;
+        }
+      }
+    });
+
+  return scoreB - scoreA;
+}
+
 export function calculateStandings(matches: MatchResult[]): Standing[] {
   const table = new Map<string, Standing>();
 
@@ -66,9 +97,15 @@ export function calculateStandings(matches: MatchResult[]): Standing[] {
 
   return [...table.values()]
     .map((t) => ({ ...t, goalDifference: t.goalsFor - t.goalsAgainst }))
-    .sort((a, b) =>
-      b.points - a.points ||
-      b.goalDifference - a.goalDifference ||
-      b.goalsFor - a.goalsFor
-    );
+    .sort((a, b) => {
+      if (b.points !== a.points) return b.points - a.points;
+
+      const h2h = getHeadToHeadScore(a.team, b.team, matches);
+      if (h2h !== 0) return h2h;
+
+      if (b.goalDifference !== a.goalDifference)
+        return b.goalDifference - a.goalDifference;
+
+      return b.goalsFor - a.goalsFor;
+    });
 }
