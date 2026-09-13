@@ -12,3 +12,27 @@ export async function GET(){
 
   return Response.json(data ?? []);
 }
+
+export async function POST(request: Request){
+  const body = await request.json();
+
+  const { data, error } = await supabase
+    .from("matches")
+    .insert([
+      {
+        home: body.home,
+        away: body.away,
+        date: body.date || null,
+        home_score: body.home_score ?? null,
+        away_score: body.away_score ?? null,
+      }
+    ])
+    .select()
+    .single();
+
+  if (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+
+  return Response.json(data);
+}
