@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { calculateStandings } from "@/lib/standings";
 
 export async function GET(){
   const { data, error } = await supabase
@@ -34,5 +35,20 @@ export async function POST(request: Request){
     return Response.json({ error: error.message }, { status: 500 });
   }
 
-  return Response.json(data);
+  const { data: allMatches } = await supabase
+    .from("matches")
+    .select("home, away, home_score, away_score")
+    .not("home_score", "is", null)
+    .not("away_score", "is", null);
+
+  const standings = calculateStandings(
+    (allMatches ?? []).map((match) => ({
+      homeTeam: match.home,
+      awayTeam: match.away,
+      homeScore: match.home_score,
+      awayScore: match.away_score,
+    }))
+  );
+
+  return Response.json({ match: data, standings });
 }
