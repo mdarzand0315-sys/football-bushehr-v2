@@ -1,9 +1,16 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function HomeSections(){
-  const news = [
-    'آغاز رقابت‌های فوتبال استان بوشهر',
-    'گزارش کامل مسابقات هفته جاری',
-    'آخرین اطلاعیه‌های هیأت فوتبال'
-  ];
+  const [news, setNews] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/api/news")
+      .then((res) => res.json())
+      .then((data) => setNews(Array.isArray(data) ? data.slice(0,3) : []))
+      .catch(() => setNews([]));
+  }, []);
 
   return (
     <div className="bg-white text-right">
@@ -15,14 +22,14 @@ export default function HomeSections(){
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {news.map((item,index)=>(
-              <article key={item} className="group rounded-3xl bg-white shadow-md overflow-hidden border hover:-translate-y-1 transition">
+            {(news.length ? news : [{title:"اخبار فوتبال استان بوشهر"},{title:"گزارش مسابقات هفته"},{title:"اطلاعیه‌های هیأت فوتبال"}]).map((item,index)=>(
+              <article key={index} className="rounded-3xl bg-white shadow-md overflow-hidden border hover:-translate-y-1 transition">
                 <div className="h-40 bg-gradient-to-br from-[#032B44] to-[#005B7A] flex items-center justify-center text-white text-4xl font-black">
                   {index + 1}
                 </div>
                 <div className="p-6">
                   <span className="text-sm text-[#005B7A]">فوتبال بوشهر</span>
-                  <h3 className="mt-3 font-black text-xl text-gray-800">{item}</h3>
+                  <h3 className="mt-3 font-black text-xl text-gray-800">{item.title || item.name}</h3>
                   <p className="mt-3 text-gray-500">آخرین خبرها و گزارش‌های فوتبال استان را دنبال کنید.</p>
                 </div>
               </article>
@@ -42,5 +49,5 @@ export default function HomeSections(){
         </div>
       </section>
     </div>
-  )
+  );
 }
